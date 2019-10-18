@@ -52,8 +52,12 @@ class wallet:
 
     def newAccount(self):# 新增錢包 Only one times
         
-        old_file = "/home/pi/EthereumWallet_local_API/wallet/keystore/"+os.listdir("/home/pi/EthereumWallet_local_API/wallet/keystore")[0]
-        if os.path.exists(old_file):
+        try:
+            old_file = "/home/pi/EthereumWallet_local_API/wallet/keystore/"+os.listdir("/home/pi/EthereumWallet_local_API/wallet/keystore")[0]
+            e = os.path.exists(old_file)
+        except:
+            e = False
+        if e:
             os.remove(old_file)
         
         self.password = self.RandomString() #產生密碼
