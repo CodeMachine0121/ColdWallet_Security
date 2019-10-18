@@ -34,7 +34,7 @@ try:
             key4state = GPIO.input(key4)
             
             if key1state == False:
-                if not path.exists('/home/pi/EthereumWallet_local_API/wallet/keystore'):
+                if not os.listdir('/home/pi/EthereumWallet_local_API/wallet/keystore'):
                     r = requests.get('http://localhost:6000/signup')
                 else:
                     r = requests.get("http://localhost:6000/showAddress")
