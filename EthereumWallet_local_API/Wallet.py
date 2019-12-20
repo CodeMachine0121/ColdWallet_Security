@@ -15,6 +15,7 @@ import hashlib
 from eth_account import Account
 import random 
 import string 
+from paper import Epaper as ep
 class wallet:
     # input password before start up the wallet 
     private = ""
@@ -75,11 +76,12 @@ class wallet:
 
     # user input their password
     def Mnemonics(self):#轉24助憶詞
+     
         data = binascii.unhexlify(self.private.split('x')[1])
-
         m = Mnemonic("english")
         return m.to_mnemonic(data)
-
+       
+            
     #get public key hash
     def Get_priv_hash(self):
         priv = str(self.PublicKey(self.private))
@@ -93,6 +95,7 @@ class wallet:
         try:
             mn = self.Mnemonics()
         except:
+            ep.locked()
             return False
         m = Mnemonic("english")
         #Turn mnemonic to privatekey
