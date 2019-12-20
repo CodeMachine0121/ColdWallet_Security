@@ -206,6 +206,23 @@ def yourBalance(bal):
     except:
         print('traceback.format_exc():\n%s'%(traceback.format_exc()))
 
-
+def locked():
+    try:
+        epd = epd2in7.EPD()
+        epd.init()
+        print("Clear...")
+        epd.Clear(0xFF)
+        print ("read bmp file on window")
+        blackimage1 = Image.new('1', (epd2in7.EPD_HEIGHT, epd2in7.EPD_WIDTH), 255) # 298*126
+        font24 = ImageFont.truetype(font, 25)
+        drawblack = ImageDraw.Draw(blackimage1)
+        print('Do it after unlock')
+        drawblack.text((30, 60),'do it after unlock', font = font24, fill = 0)
+        
+        epd.display(epd.getbuffer(blackimage1))
+        epd.sleep()
+    except:
+        print('traceback.format_exc():\n%s'%(traceback.format_exc()))
+    
 
 
